@@ -1,4 +1,4 @@
-import {Geist_Mono, Outfit } from "next/font/google";
+import { Geist_Mono, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
@@ -19,14 +19,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
+    <html data-theme='light'
       lang="en"
       className={`${OutfitFont.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-      <Navbar/>
-      {children}
-      <Footer/>
+        <Navbar />
+        <main className="container mx-auto">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );
