@@ -26,7 +26,9 @@ const PhotoCard = ({ photo }) => {
                     <p>{photo.downloads}</p>
                 </div>
             </div>
-            <Button variant='outline' className={`w-full mt-[15px]` }>View</Button>
+            <Link href={`/all-photos/${photo.id}`}>
+                <Button variant='outline' className={`w-full mt-[15px]`}>View</Button>
+            </Link>
         </div>
     );
 };
