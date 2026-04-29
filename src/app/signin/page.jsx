@@ -11,17 +11,24 @@ import {
     Label,
     TextField,
 } from "@heroui/react";
+import { useRouter } from "next/navigation";
 import { GrGoogle } from "react-icons/gr";
 
 export default function SignInPage() {
+    const router = useRouter();
     const onSubmit = async (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
-        const {data,error} = await authClient.signUp.email({
+        const {data,error} = await authClient.signIn.email({
             email,
             password,
-        })
+        });
+        if(data){
+            router.push("/");
+        } else{
+            console.error("Login Failed" ,error)
+        }
         console.log(data,error);
     };
     const handleGoogleSignIn = async () =>{
@@ -32,7 +39,7 @@ export default function SignInPage() {
 
     return (
         <Card className="border mx-auto w-125 py-10 mt-5">
-            <h1 className="text-center text-2xl font-bold">Sign Ip</h1>
+            <h1 className="text-center text-2xl font-bold">Sign In</h1>
 
             <Form className="flex w-96 mx-auto flex-col gap-4" onSubmit={onSubmit}>
 
